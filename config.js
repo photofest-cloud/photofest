@@ -1,0 +1,1 @@
+window.PHOTOFEST_API_URL = window.PHOTOFEST_API_URL || '';
