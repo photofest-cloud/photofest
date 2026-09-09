@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS events (
+  id BIGSERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  event_date DATE NOT NULL,
+  place TEXT,
+  slug TEXT NOT NULL UNIQUE,
+  active BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS photos (
+  id BIGSERIAL PRIMARY KEY,
+  event_id BIGINT NOT NULL REFERENCES events(id) ON DELETE CASCADE,
+  object_key TEXT NOT NULL UNIQUE,
+  file_name TEXT NOT NULL,
+  public_url TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_photos_event_id ON photos(event_id);
+CREATE INDEX IF NOT EXISTS idx_events_slug ON events(slug);
