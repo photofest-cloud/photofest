@@ -3,6 +3,14 @@ window.PHOTOFEST_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_1yO3DY7cIHJT_Xxjw8X1
 window.PHOTOFEST_SUPABASE_KEY = window.PHOTOFEST_SUPABASE_PUBLISHABLE_KEY;
 window.PHOTOFEST_API_URL = window.PHOTOFEST_API_URL || '';
 
+// PHOTO FEST Live Gallery
+if (location.pathname.endsWith('/galeria.html') || location.pathname.endsWith('galeria.html')) {
+  const live = document.createElement('script');
+  live.src = 'live-gallery.js?v=1';
+  live.defer = true;
+  document.head.appendChild(live);
+}
+
 // PHOTO FEST admin enhancements
 if (location.pathname.endsWith('/admin.html') || location.pathname.endsWith('admin.html')) {
   document.addEventListener('DOMContentLoaded', () => {
