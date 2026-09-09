@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evento Demo | PHOTO FEST</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;background:#f5f5f2;color:#111}
+    header{position:sticky;top:0;z-index:20;background:rgba(245,245,242,.94);backdrop-filter:blur(12px);border-bottom:1px solid #ddd;padding:18px 5%;display:flex;justify-content:space-between;align-items:center}
+    .logo{font-weight:800;letter-spacing:3px}.logo span{font-weight:300}.back{color:#111;text-decoration:none;font-size:13px}
+    .hero{padding:72px 5% 40px;max-width:1200px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:4px;font-size:11px;color:#777;margin-bottom:14px}.hero h1{font-size:clamp(42px,8vw,88px);line-height:.95;letter-spacing:-3px}.meta{margin-top:18px;color:#666;font-size:14px}.intro{margin-top:24px;max-width:620px;color:#555;line-height:1.6}
+    .toolbar{max-width:1200px;margin:0 auto 26px;padding:0 5%;display:flex;gap:10px;flex-wrap:wrap}.pill{border:1px solid #ccc;background:white;border-radius:999px;padding:10px 14px;font-size:13px}
+    .gallery{max-width:1200px;margin:auto;padding:0 5% 80px;columns:3 280px;column-gap:14px}.photo{break-inside:avoid;margin-bottom:14px;position:relative;border-radius:18px;overflow:hidden;background:#ddd}.photo img{width:100%;display:block}.actions{position:absolute;left:12px;right:12px;bottom:12px;display:flex;justify-content:space-between;gap:8px;opacity:0;transition:.2s}.photo:hover .actions{opacity:1}.btn{border:0;background:rgba(255,255,255,.93);padding:10px 12px;border-radius:999px;font-weight:700;font-size:12px;cursor:pointer}.fav.active{background:#111;color:#fff}
+    .note{max-width:1200px;margin:auto;padding:0 5% 30px;color:#777;font-size:12px}
+    @media(max-width:700px){header{padding:16px 20px}.hero{padding:55px 20px 30px}.toolbar{padding:0 20px}.gallery{padding:0 10px 60px;columns:2 145px;column-gap:8px}.photo{margin-bottom:8px;border-radius:10px}.actions{opacity:1;left:7px;right:7px;bottom:7px}.btn{font-size:10px;padding:8px}.note{padding:0 20px 25px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">PHOTO<span>FEST</span></div>
+    <a class="back" href="index.html">← Inicio</a>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Evento demo</div>
+    <h1>Una noche<br>para recordar.</h1>
+    <div class="meta">09 SEPT 2026 · 12 FOTOGRAFÍAS</div>
+    <p class="intro">Esta es la primera versión de la experiencia que verá un invitado al escanear el QR. Por ahora usamos imágenes de demostración; después aquí aparecerán las fotografías reales de cada evento.</p>
+  </section>
+
+  <div class="toolbar">
+    <button class="pill" onclick="showAll()">Todas</button>
+    <button class="pill" onclick="showFavorites()">♡ Favoritas</button>
+    <button class="pill" onclick="downloadFavorites()">↓ Descargar favoritas</button>
+  </div>
+
+  <main class="gallery" id="gallery"></main>
+  <p class="note">Demo funcional: puedes marcar favoritas y probar la descarga individual. La descarga múltiple real llegará cuando conectemos almacenamiento y backend.</p>
+
+  <script>
+    const photos = [
+      'https://picsum.photos/seed/photofest01/900/1200',
+      'https://picsum.photos/seed/photofest02/900/650',
+      'https://picsum.photos/seed/photofest03/900/1350',
+      'https://picsum.photos/seed/photofest04/900/900',
+      'https://picsum.photos/seed/photofest05/900/1250',
+      'https://picsum.photos/seed/photofest06/900/700',
+      'https://picsum.photos/seed/photofest07/900/1100',
+      'https://picsum.photos/seed/photofest08/900/780',
+      'https://picsum.photos/seed/photofest09/900/1300',
+      'https://picsum.photos/seed/photofest10/900/860',
+      'https://picsum.photos/seed/photofest11/900/1180',
+      'https://picsum.photos/seed/photofest12/900/720'
+    ];
+
+    const favorites = new Set();
+    const gallery = document.getElementById('gallery');
+
+    function render(filterFavorites=false){
+      gallery.innerHTML='';
+      photos.forEach((src,index)=>{
+        if(filterFavorites && !favorites.has(index)) return;
+        const card=document.createElement('article');
+        card.className='photo';
+        card.innerHTML=`<img src="${src}" alt="Fotografía ${index+1}" loading="lazy"><div class="actions"><button class="btn fav ${favorites.has(index)?'active':''}" onclick="toggleFavorite(${index}, event)">${favorites.has(index)?'♥ Favorita':'♡ Favorita'}</button><a class="btn" href="${src}" target="_blank" download="photofest-${index+1}.jpg">↓ Descargar</a></div>`;
+        gallery.appendChild(card);
+      });
+    }
+
+    function toggleFavorite(index,e){e.preventDefault();favorites.has(index)?favorites.delete(index):favorites.add(index);render(false)}
+    function showAll(){render(false)}
+    function showFavorites(){render(true)}
+    function downloadFavorites(){
+      if(!favorites.size){alert('Primero marca una o más fotos como favoritas.');return;}
+      alert(`Tienes ${favorites.size} favorita(s). La descarga múltiple se activará cuando conectemos el sistema real.`);
+    }
+    render();
+  </script>
+</body>
+</html>
