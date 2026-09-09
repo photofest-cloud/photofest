@@ -1,3 +1,4 @@
 window.PHOTOFEST_SUPABASE_URL = 'https://aetztyeflblracfhallo.supabase.co';
 window.PHOTOFEST_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_1yO3DY7cIHJT_Xxjw8X14A_VJoyPhXH';
+window.PHOTOFEST_SUPABASE_KEY = window.PHOTOFEST_SUPABASE_PUBLISHABLE_KEY;
 window.PHOTOFEST_API_URL = window.PHOTOFEST_API_URL || '';
