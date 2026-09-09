@@ -1,100 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel | PHOTO FEST</title>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Panel | PHOTO FEST</title>
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,Helvetica,sans-serif;background:#0e0e0e;color:#fff;min-height:100vh}
-    a{color:inherit}
-    .shell{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
-    aside{border-right:1px solid #242424;padding:28px 22px;position:sticky;top:0;height:100vh;background:#111}
-    .logo{font-size:22px;font-weight:800;letter-spacing:3px;margin-bottom:46px}.logo span{font-weight:300}
-    nav{display:grid;gap:8px}.nav-item{padding:12px 14px;border-radius:12px;text-decoration:none;color:#aaa;font-size:14px}.nav-item.active,.nav-item:hover{background:#1d1d1d;color:#fff}
-    .aside-bottom{position:absolute;bottom:24px;left:22px;right:22px;color:#666;font-size:12px;line-height:1.5}
-    main{padding:34px 4% 70px;max-width:1450px;width:100%;margin:auto}
-    .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:38px}.eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#777}.topbar h1{font-size:clamp(34px,5vw,62px);letter-spacing:-3px;margin-top:6px}.primary{border:0;background:#fff;color:#000;font-weight:800;border-radius:999px;padding:14px 20px;cursor:pointer}
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}.stat{background:#161616;border:1px solid #252525;border-radius:18px;padding:20px}.stat small{color:#777}.stat strong{display:block;font-size:30px;margin-top:12px}
-    .section-head{display:flex;justify-content:space-between;align-items:end;margin:34px 0 16px}.section-head h2{font-size:22px}.section-head p{color:#777;font-size:13px}
-    .events{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.event{background:#161616;border:1px solid #262626;border-radius:20px;padding:20px;display:grid;grid-template-columns:1fr auto;gap:18px}.badge{display:inline-block;font-size:10px;letter-spacing:2px;text-transform:uppercase;border:1px solid #353535;border-radius:999px;padding:7px 10px;color:#aaa;margin-bottom:16px}.event h3{font-size:23px;margin-bottom:7px}.meta{color:#777;font-size:13px;line-height:1.7}.event-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.btn{border:1px solid #333;background:#1d1d1d;color:#fff;border-radius:999px;padding:10px 12px;font-size:12px;text-decoration:none;cursor:pointer}.qrbox{width:92px;height:92px;background:#fff;border-radius:12px;padding:7px;align-self:start}.qrbox img{width:100%;height:100%;display:block}
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}.modal.show{display:flex}.card{width:min(560px,100%);background:#171717;border:1px solid #2a2a2a;border-radius:24px;padding:26px}.card h2{font-size:28px;margin-bottom:6px}.card>p{color:#777;font-size:13px;margin-bottom:22px}.form{display:grid;gap:14px}.field{display:grid;gap:7px}.field label{font-size:12px;color:#aaa}.field input{width:100%;background:#0f0f0f;border:1px solid #2d2d2d;color:#fff;border-radius:12px;padding:13px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:6px}.secondary{border:1px solid #333;background:transparent;color:#fff;border-radius:999px;padding:12px 16px;cursor:pointer}.notice{margin-top:18px;padding:13px 14px;border-radius:12px;background:#101010;color:#777;font-size:12px;line-height:1.5}
-    @media(max-width:900px){.shell{grid-template-columns:1fr}aside{position:relative;height:auto;border-right:0;border-bottom:1px solid #242424;padding:18px 20px}.logo{margin-bottom:0}.aside-bottom,aside nav{display:none}.stats{grid-template-columns:repeat(2,1fr)}.events{grid-template-columns:1fr}main{padding:26px 20px 60px}.topbar{align-items:flex-start}.row{grid-template-columns:1fr}}
-    @media(max-width:560px){.stats{grid-template-columns:1fr 1fr}.stat{padding:16px}.stat strong{font-size:24px}.event{grid-template-columns:1fr}.qrbox{width:110px;height:110px}.primary{padding:12px 15px}.topbar h1{font-size:42px}}
+    *{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#0e0e0e;color:#fff;min-height:100vh}a{color:inherit}.shell{display:grid;grid-template-columns:250px 1fr;min-height:100vh}aside{border-right:1px solid #242424;padding:28px 22px;position:sticky;top:0;height:100vh;background:#111}.logo{font-size:22px;font-weight:800;letter-spacing:3px;margin-bottom:46px}.logo span{font-weight:300}nav{display:grid;gap:8px}.nav-item{padding:12px 14px;border-radius:12px;text-decoration:none;color:#aaa;font-size:14px}.nav-item.active,.nav-item:hover{background:#1d1d1d;color:#fff}.aside-bottom{position:absolute;bottom:24px;left:22px;right:22px;color:#666;font-size:12px;line-height:1.5}main{padding:34px 4% 70px;max-width:1450px;width:100%;margin:auto}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:38px}.eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#777}.topbar h1{font-size:clamp(34px,5vw,62px);letter-spacing:-3px;margin-top:6px}.primary{border:0;background:#fff;color:#000;font-weight:800;border-radius:999px;padding:14px 20px;cursor:pointer}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}.stat{background:#161616;border:1px solid #252525;border-radius:18px;padding:20px}.stat small{color:#777}.stat strong{display:block;font-size:30px;margin-top:12px}.connection{padding:13px 16px;border:1px solid #292929;border-radius:14px;background:#141414;color:#888;font-size:12px;margin-bottom:28px}.connection strong{color:#fff}.section-head{display:flex;justify-content:space-between;align-items:end;margin:34px 0 16px}.section-head h2{font-size:22px}.section-head p{color:#777;font-size:13px}.events{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.event{background:#161616;border:1px solid #262626;border-radius:20px;padding:20px;display:grid;grid-template-columns:1fr auto;gap:18px}.badge{display:inline-block;font-size:10px;letter-spacing:2px;text-transform:uppercase;border:1px solid #353535;border-radius:999px;padding:7px 10px;color:#aaa;margin-bottom:16px}.event h3{font-size:23px;margin-bottom:7px}.meta{color:#777;font-size:13px;line-height:1.7}.event-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.btn{border:1px solid #333;background:#1d1d1d;color:#fff;border-radius:999px;padding:10px 12px;font-size:12px;text-decoration:none;cursor:pointer}.qrbox{width:92px;height:92px;background:#fff;border-radius:12px;padding:7px;align-self:start}.qrbox img{width:100%;height:100%;display:block}.upload-input{display:none}.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:18px;z-index:50}.modal.show{display:flex}.card{width:min(560px,100%);background:#171717;border:1px solid #2a2a2a;border-radius:24px;padding:26px}.card h2{font-size:28px;margin-bottom:6px}.card>p{color:#777;font-size:13px;margin-bottom:22px}.form{display:grid;gap:14px}.field{display:grid;gap:7px}.field label{font-size:12px;color:#aaa}.field input{width:100%;background:#0f0f0f;border:1px solid #2d2d2d;color:#fff;border-radius:12px;padding:13px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:6px}.secondary{border:1px solid #333;background:transparent;color:#fff;border-radius:999px;padding:12px 16px;cursor:pointer}.notice{margin-top:18px;padding:13px 14px;border-radius:12px;background:#101010;color:#777;font-size:12px;line-height:1.5}
+    @media(max-width:900px){.shell{grid-template-columns:1fr}aside{position:relative;height:auto;border-right:0;border-bottom:1px solid #242424;padding:18px 20px}.logo{margin-bottom:0}.aside-bottom,aside nav{display:none}.stats{grid-template-columns:repeat(2,1fr)}.events{grid-template-columns:1fr}main{padding:26px 20px 60px}.topbar{align-items:flex-start}.row{grid-template-columns:1fr}}@media(max-width:560px){.stat{padding:16px}.stat strong{font-size:24px}.event{grid-template-columns:1fr}.qrbox{width:110px;height:110px}.primary{padding:12px 15px}.topbar h1{font-size:42px}}
   </style>
 </head>
 <body>
-  <div class="shell">
-    <aside>
-      <div class="logo">PHOTO<span>FEST</span></div>
-      <nav>
-        <a class="nav-item active" href="#">Resumen</a>
-        <a class="nav-item" href="#eventos">Eventos</a>
-        <a class="nav-item" href="evento-demo.html">Ver galería demo</a>
-        <a class="nav-item" href="index.html">Ir al sitio</a>
-      </nav>
-      <div class="aside-bottom">Panel prototipo<br>La información se guarda solo en este navegador.</div>
-    </aside>
-
-    <main>
-      <div class="topbar">
-        <div><div class="eyebrow">Panel del fotógrafo</div><h1>Tu operación,<br>en un solo lugar.</h1></div>
-        <button class="primary" onclick="openModal()">+ Crear evento</button>
-      </div>
-
-      <section class="stats">
-        <div class="stat"><small>Eventos activos</small><strong id="statEvents">1</strong></div>
-        <div class="stat"><small>Fotografías</small><strong>12</strong></div>
-        <div class="stat"><small>Descargas</small><strong>0</strong></div>
-        <div class="stat"><small>Escaneos QR</small><strong>0</strong></div>
-      </section>
-
-      <div class="section-head" id="eventos"><div><h2>Eventos</h2><p>Crea, abre y comparte cada galería.</p></div></div>
-      <section class="events" id="eventsList"></section>
-    </main>
-  </div>
-
-  <div class="modal" id="modal" onclick="backdropClose(event)">
-    <div class="card">
-      <h2>Nuevo evento</h2>
-      <p>Esto crea una tarjeta y un QR de demostración. Después lo conectaremos con la base de datos real.</p>
-      <form class="form" onsubmit="createEvent(event)">
-        <div class="field"><label>Nombre del evento</label><input id="name" required placeholder="Ej. Boda Ana & Luis"></div>
-        <div class="row">
-          <div class="field"><label>Fecha</label><input id="date" type="date" required></div>
-          <div class="field"><label>Código corto</label><input id="slug" required placeholder="ana-luis"></div>
-        </div>
-        <div class="field"><label>Ubicación</label><input id="place" placeholder="Ej. Tampico, Tamaulipas"></div>
-        <div class="modal-actions"><button type="button" class="secondary" onclick="closeModal()">Cancelar</button><button class="primary" type="submit">Crear evento</button></div>
-      </form>
-      <div class="notice">Importante: esta etapa es visual y de prueba. Aún no sube fotografías reales ni guarda información en un servidor.</div>
-    </div>
-  </div>
-
-  <script>
-    const demo={name:'Una noche para recordar',date:'09 SEPT 2026',place:'Evento demo',slug:'evento-demo',url:'evento-demo.html',photos:12,demo:true};
-    let events=JSON.parse(localStorage.getItem('photofest-events')||'[]');
-    const list=document.getElementById('eventsList');
-
-    function formatDate(value){if(!value)return '';const d=new Date(value+'T12:00:00');return d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase();}
-    function qrUrl(url){return 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data='+encodeURIComponent(url);}
-    function render(){
-      list.innerHTML='';
-      [demo,...events].forEach((ev,i)=>{
-        const absolute=ev.demo?location.href.replace('admin.html','evento-demo.html'):location.href.replace('admin.html',ev.slug+'.html');
-        const article=document.createElement('article');article.className='event';
-        article.innerHTML=`<div><span class="badge">${ev.demo?'Demo':'Borrador'}</span><h3>${ev.name}</h3><div class="meta">${ev.date}${ev.place?' · '+ev.place:''}<br>${ev.photos||0} fotografías</div><div class="event-actions"><a class="btn" href="${ev.demo?'evento-demo.html':'#'}" ${ev.demo?'':'onclick="return false"'}>Abrir galería</a><button class="btn" onclick="copyLink('${absolute.replace(/'/g,"\\'")}')">Copiar enlace</button>${ev.demo?'':'<button class="btn" onclick="removeEvent('+(i-1)+')">Eliminar</button>'}</div></div><div class="qrbox"><img src="${qrUrl(absolute)}" alt="QR del evento"></div>`;
-        list.appendChild(article);
-      });
-      document.getElementById('statEvents').textContent=1+events.length;
-    }
-    function openModal(){document.getElementById('modal').classList.add('show')}
-    function closeModal(){document.getElementById('modal').classList.remove('show')}
-    function backdropClose(e){if(e.target.id==='modal')closeModal()}
-    function createEvent(e){e.preventDefault();const slug=document.getElementById('slug').value.trim().toLowerCase().replace(/[^a-z0-9-]+/g,'-').replace(/^-|-$/g,'');events.unshift({name:document.getElementById('name').value.trim(),date:formatDate(document.getElementById('date').value),place:document.getElementById('place').value.trim(),slug,photos:0});localStorage.setItem('photofest-events',JSON.stringify(events));e.target.reset();closeModal();render();}
-    function removeEvent(i){events.splice(i,1);localStorage.setItem('photofest-events',JSON.stringify(events));render();}
-    async function copyLink(url){try{await navigator.clipboard.writeText(url);alert('Enlace copiado.');}catch(e){prompt('Copia este enlace:',url)}}
-    render();
-  </script>
-</body>
-</html>
+<div class="shell"><aside><div class="logo">PHOTO<span>FEST</span></div><nav><a class="nav-item active" href="#">Resumen</a><a class="nav-item" href="#eventos">Eventos</a><a class="nav-item" href="evento-demo.html">Galería demo</a><a class="nav-item" href="index.html">Ir al sitio</a></nav><div class="aside-bottom">Panel PHOTO FEST<br><span id="sideMode">Modo demo</span></div></aside>
+<main><div class="topbar"><div><div class="eyebrow">Panel del fotógrafo</div><h1>Tu operación,<br>en un solo lugar.</h1></div><button class="primary" onclick="openModal()">+ Crear evento</button></div>
+<section class="stats"><div class="stat"><small>Eventos activos</small><strong id="statEvents">1</strong></div><div class="stat"><small>Fotografías</small><strong id="statPhotos">12</strong></div><div class="stat"><small>Descargas</small><strong>0</strong></div><div class="stat"><small>Escaneos QR</small><strong>0</strong></div></section>
+<div class="connection" id="connection">Comprobando conexión...</div>
+<div class="section-head" id="eventos"><div><h2>Eventos</h2><p>Crea, sube fotografías y comparte cada galería.</p></div></div><section class="events" id="eventsList"></section></main></div>
+<div class="modal" id="modal" onclick="backdropClose(event)"><div class="card"><h2>Nuevo evento</h2><p>Cuando el backend esté conectado, este evento se guardará en la base de datos real.</p><form class="form" onsubmit="createEvent(event)"><div class="field"><label>Nombre del evento</label><input id="name" required placeholder="Ej. Boda Ana & Luis"></div><div class="row"><div class="field"><label>Fecha</label><input id="date" type="date" required></div><div class="field"><label>Código corto</label><input id="slug" required placeholder="ana-luis"></div></div><div class="field"><label>Ubicación</label><input id="place" placeholder="Ej. Tampico, Tamaulipas"></div><div class="modal-actions"><button type="button" class="secondary" onclick="closeModal()">Cancelar</button><button class="primary" type="submit">Crear evento</button></div></form><div class="notice" id="modalNotice">Si todavía estamos en modo demo, se guardará solo en este navegador.</div></div></div>
+<script src="config.js"></script>
+<script>
+const api=(window.PHOTOFEST_API_URL||'').replace(/\/$/,'');
+const demo={name:'Una noche para recordar',event_date:'2026-09-09',place:'Evento demo',slug:'evento-demo',photos:12,demo:true};
+let events=[];let realMode=false;const list=document.getElementById('eventsList');
+function formatDate(v){if(!v)return '';const d=new Date(v+'T12:00:00');return d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase()}
+function qrUrl(url){return 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data='+encodeURIComponent(url)}
+function eventUrl(slug){return location.href.replace('admin.html','galeria.html?evento='+encodeURIComponent(slug))}
+async function init(){
+  if(api){try{const h=await fetch(api+'/api/health');if(h.ok){realMode=true;document.getElementById('connection').innerHTML='<strong>● Sistema conectado.</strong> Los eventos y fotos ya pueden guardarse en servidor.';document.getElementById('sideMode').textContent='Sistema conectado';document.getElementById('modalNotice').textContent='Este evento se guardará en la base de datos real.';await loadRealEvents();return}}catch(e){}}
+  realMode=false;events=JSON.parse(localStorage.getItem('photofest-events')||'[]');document.getElementById('connection').innerHTML='<strong>Modo demo.</strong> El panel está listo; falta desplegar el backend y conectar Cloudflare R2 + base de datos.';render();
+}
+async function loadRealEvents(){const r=await fetch(api+'/api/events');events=await r.json();render()}
+function render(){
+ list.innerHTML='';const source=realMode?events:[demo,...events];let totalPhotos=realMode?events.reduce((n,e)=>n+(Number(e.photos)||0),0):12;
+ source.forEach((ev,i)=>{const absolute=ev.demo?location.href.replace('admin.html','evento-demo.html'):eventUrl(ev.slug);const article=document.createElement('article');article.className='event';const date=ev.demo?'09 SEPT 2026':formatDate(ev.event_date||ev.date);article.innerHTML=`<div><span class="badge">${ev.demo?'Demo':realMode?'Activo':'Borrador'}</span><h3>${ev.name}</h3><div class="meta">${date}${ev.place?' · '+ev.place:''}<br>${ev.photos||0} fotografías</div><div class="event-actions"><a class="btn" href="${ev.demo?'evento-demo.html':'galeria.html?evento='+encodeURIComponent(ev.slug)}">Abrir galería</a><button class="btn" onclick="copyLink('${absolute.replace(/'/g,"\\'")}')">Copiar enlace</button>${realMode&&!ev.demo?`<label class="btn">Subir fotos<input class="upload-input" type="file" accept="image/*" multiple onchange="uploadPhotos('${ev.slug}',this)"></label>`:''}${!realMode&&!ev.demo?`<button class="btn" onclick="removeEvent(${i-1})">Eliminar</button>`:''}</div></div><div class="qrbox"><img src="${qrUrl(absolute)}" alt="QR del evento"></div>`;list.appendChild(article)});
+ document.getElementById('statEvents').textContent=source.length;document.getElementById('statPhotos').textContent=totalPhotos;
+}
+function openModal(){document.getElementById('modal').classList.add('show')}function closeModal(){document.getElementById('modal').classList.remove('show')}function backdropClose(e){if(e.target.id==='modal')closeModal()}
+async function createEvent(e){e.preventDefault();const payload={name:document.getElementById('name').value.trim(),event_date:document.getElementById('date').value,place:document.getElementById('place').value.trim(),slug:document.getElementById('slug').value.trim()};
+ if(realMode){const r=await fetch(api+'/api/events',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await r.json();if(!r.ok){alert(data.error||'No se pudo crear el evento.');return}await loadRealEvents()}else{const slug=payload.slug.toLowerCase().replace(/[^a-z0-9-]+/g,'-').replace(/^-|-$/g,'');events.unshift({name:payload.name,event_date:payload.event_date,place:payload.place,slug,photos:0});localStorage.setItem('photofest-events',JSON.stringify(events));render()}e.target.reset();closeModal()}
+function removeEvent(i){events.splice(i,1);localStorage.setItem('photofest-events',JSON.stringify(events));render()}
+async function uploadPhotos(slug,input){if(!input.files.length)return;const form=new FormData();[...input.files].forEach(f=>form.append('photos',f));const label=input.parentElement;const old=label.childNodes[0].textContent;label.childNodes[0].textContent='Subiendo...';try{const r=await fetch(`${api}/api/events/${encodeURIComponent(slug)}/photos`,{method:'POST',body:form});const data=await r.json();if(!r.ok)throw new Error(data.error||'Error al subir.');alert(`${data.uploaded} foto(s) subida(s).`);await loadRealEvents()}catch(e){alert(e.message)}finally{label.childNodes[0].textContent=old;input.value=''}}
+async function copyLink(url){try{await navigator.clipboard.writeText(url);alert('Enlace copiado.')}catch(e){prompt('Copia este enlace:',url)}}
+init();
+</script>
+</body></html>
