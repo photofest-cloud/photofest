@@ -9,7 +9,7 @@
     body{font-family:Arial,Helvetica,sans-serif;background:#0b0b0b;color:#fff;min-height:100vh}
     header{width:100%;padding:24px 7%;display:flex;justify-content:space-between;align-items:center;position:absolute;top:0;left:0;z-index:10}
     .logo{font-size:24px;font-weight:800;letter-spacing:3px}.logo span{font-weight:300}
-    .nav-link{color:#fff;text-decoration:none;font-size:14px;opacity:.8}
+    .nav{display:flex;gap:18px;align-items:center}.nav-link{color:#fff;text-decoration:none;font-size:14px;opacity:.8}.nav-link.admin{opacity:.5}
     .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 80px;background:radial-gradient(circle at center,#272727 0%,#111 40%,#050505 100%)}
     .hero-content{max-width:850px}.eyebrow{font-size:12px;letter-spacing:5px;text-transform:uppercase;opacity:.55;margin-bottom:25px}
     h1{font-size:clamp(55px,11vw,130px);line-height:.9;letter-spacing:-5px;margin-bottom:30px}
@@ -19,13 +19,13 @@
     .features{padding:100px 7%;background:#111}.features-title{text-align:center;margin-bottom:60px}.features-title p{color:#888;margin-top:12px}
     .feature-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.feature{padding:35px;background:#191919;border:1px solid #292929;border-radius:18px}.feature-number{font-size:12px;color:#777;margin-bottom:30px}.feature h3{font-size:20px;margin-bottom:12px}.feature p{color:#888;line-height:1.6;font-size:14px}
     footer{padding:35px 7%;background:#080808;text-align:center;color:#555;font-size:12px}
-    @media(max-width:700px){header{padding:22px 25px}.logo{font-size:19px}.hero{padding-left:25px;padding-right:25px}h1{letter-spacing:-3px}.hero-description{font-size:16px}.feature-grid{grid-template-columns:1fr}.features{padding:80px 25px}}
+    @media(max-width:700px){header{padding:22px 25px}.logo{font-size:19px}.nav{gap:10px}.nav-link{font-size:12px}.hero{padding-left:25px;padding-right:25px}h1{letter-spacing:-3px}.hero-description{font-size:16px}.feature-grid{grid-template-columns:1fr}.features{padding:80px 25px}}
   </style>
 </head>
 <body>
   <header>
     <div class="logo">PHOTO<span>FEST</span></div>
-    <a href="evento-demo.html" class="nav-link">Mis fotos</a>
+    <div class="nav"><a href="evento-demo.html" class="nav-link">Mis fotos</a><a href="admin.html" class="nav-link admin">Fotógrafo</a></div>
   </header>
 
   <main>
