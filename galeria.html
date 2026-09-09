@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Galería | PHOTO FEST</title>
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#f5f5f2;color:#111;min-height:100vh}header{position:sticky;top:0;z-index:20;background:rgba(245,245,242,.94);backdrop-filter:blur(12px);border-bottom:1px solid #ddd;padding:18px 5%;display:flex;justify-content:space-between;align-items:center}.logo{font-weight:800;letter-spacing:3px}.logo span{font-weight:300}.back{color:#111;text-decoration:none;font-size:13px}.hero{padding:70px 5% 34px;max-width:1200px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:4px;font-size:11px;color:#777;margin-bottom:14px}.hero h1{font-size:clamp(42px,8vw,88px);line-height:.95;letter-spacing:-3px}.meta{margin-top:18px;color:#666;font-size:14px}.gallery{max-width:1200px;margin:auto;padding:0 5% 80px;columns:3 280px;column-gap:14px}.photo{break-inside:avoid;margin-bottom:14px;border-radius:18px;overflow:hidden;background:#ddd}.photo img{width:100%;display:block}.empty{max-width:1200px;margin:0 auto;padding:10px 5% 80px;color:#777;line-height:1.6}.status{display:inline-block;margin-top:18px;padding:8px 12px;border:1px solid #ccc;border-radius:999px;font-size:12px;color:#666}@media(max-width:700px){header{padding:16px 20px}.hero{padding:55px 20px 28px}.gallery{padding:0 10px 60px;columns:2 145px;column-gap:8px}.photo{margin-bottom:8px;border-radius:10px}.empty{padding:0 20px 60px}}
+    *{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#f5f5f2;color:#111;min-height:100vh}header{position:sticky;top:0;z-index:20;background:rgba(245,245,242,.94);backdrop-filter:blur(12px);border-bottom:1px solid #ddd;padding:18px 5%;display:flex;justify-content:space-between;align-items:center}.logo{font-weight:800;letter-spacing:3px}.logo span{font-weight:300}.back{color:#111;text-decoration:none;font-size:13px}.hero{padding:70px 5% 34px;max-width:1200px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:4px;font-size:11px;color:#777;margin-bottom:14px}.hero h1{font-size:clamp(42px,8vw,88px);line-height:.95;letter-spacing:-3px}.meta{margin-top:18px;color:#666;font-size:14px}.gallery{max-width:1200px;margin:auto;padding:0 5% 80px;columns:3 280px;column-gap:14px}.photo{break-inside:avoid;margin-bottom:14px;border-radius:18px;overflow:hidden;background:#ddd;display:block}.photo img{width:100%;display:block}.empty{max-width:1200px;margin:0 auto;padding:10px 5% 80px;color:#777;line-height:1.6}.status{display:inline-block;margin-top:18px;padding:8px 12px;border:1px solid #ccc;border-radius:999px;font-size:12px;color:#666}@media(max-width:700px){header{padding:16px 20px}.hero{padding:55px 20px 28px}.gallery{padding:0 10px 60px;columns:2 145px;column-gap:8px}.photo{margin-bottom:8px;border-radius:10px}.empty{padding:0 20px 60px}}
   </style>
 </head>
 <body>
@@ -16,17 +16,36 @@
 
   <script src="config.js"></script>
   <script>
-    const params=new URLSearchParams(location.search);const slug=params.get('evento');const api=(window.PHOTOFEST_API_URL||'').replace(/\/$/,'');
+    const params=new URLSearchParams(location.search);
+    const slug=params.get('evento');
+    const base=(window.PHOTOFEST_SUPABASE_URL||'').replace(/\/$/,'');
+    const key=window.PHOTOFEST_SUPABASE_PUBLISHABLE_KEY||'';
     const title=document.getElementById('title'),meta=document.getElementById('meta'),gallery=document.getElementById('gallery'),empty=document.getElementById('empty'),status=document.getElementById('status');
+
     function niceDate(value){if(!value)return '';return new Date(value+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'}).toUpperCase()}
+    function publicPhotoUrl(path){return `${base}/storage/v1/object/public/photos/${path.split('/').map(encodeURIComponent).join('/')}`}
+    async function supabaseGet(path){
+      const r=await fetch(`${base}/rest/v1/${path}`,{headers:{apikey:key,Authorization:`Bearer ${key}`}});
+      if(!r.ok){throw new Error('No pudimos consultar Supabase.');}
+      return r.json();
+    }
+
     async function load(){
       if(!slug){title.textContent='Evento no especificado';status.textContent='Sin evento';return}
-      if(!api){title.textContent='Galería preparada';meta.textContent=slug;status.textContent='Esperando conexión';empty.hidden=false;empty.textContent='La galería dinámica ya está lista. En cuanto conectemos el backend, aquí aparecerán automáticamente las fotos reales del evento.';return}
+      if(!base||!key){title.textContent='Galería sin conectar';status.textContent='Configuración pendiente';return}
       try{
-        const r=await fetch(`${api}/api/events/${encodeURIComponent(slug)}`);if(!r.ok)throw new Error('No se encontró el evento.');const ev=await r.json();
-        title.textContent=ev.name;meta.textContent=[niceDate(ev.event_date),ev.place].filter(Boolean).join(' · ');status.textContent=`${ev.photos.length} fotografía${ev.photos.length===1?'':'s'}`;
-        if(!ev.photos.length){empty.hidden=false;empty.textContent='Todavía no hay fotografías publicadas para este evento.';return}
-        ev.photos.forEach((p,i)=>{const a=document.createElement('a');a.className='photo';a.href=p.public_url;a.target='_blank';a.rel='noopener';a.innerHTML=`<img src="${p.public_url}" alt="Fotografía ${i+1}" loading="lazy">`;gallery.appendChild(a)})
+        const events=await supabaseGet(`events?slug=eq.${encodeURIComponent(slug)}&status=eq.active&select=id,name,event_date,location&limit=1`);
+        if(!events.length)throw new Error('No se encontró este evento.');
+        const ev=events[0];
+        const photos=await supabaseGet(`photos?event_id=eq.${encodeURIComponent(ev.id)}&select=storage_path,file_name,created_at&order=created_at.asc`);
+        title.textContent=ev.name;
+        meta.textContent=[niceDate(ev.event_date),ev.location].filter(Boolean).join(' · ');
+        status.textContent=`${photos.length} fotografía${photos.length===1?'':'s'}`;
+        if(!photos.length){empty.hidden=false;empty.textContent='Todavía no hay fotografías publicadas para este evento.';return}
+        photos.forEach((p,i)=>{
+          const url=publicPhotoUrl(p.storage_path);
+          const a=document.createElement('a');a.className='photo';a.href=url;a.target='_blank';a.rel='noopener';a.innerHTML=`<img src="${url}" alt="Fotografía ${i+1}" loading="lazy">`;gallery.appendChild(a)
+        })
       }catch(e){title.textContent='No pudimos abrir esta galería';status.textContent='Error';empty.hidden=false;empty.textContent=e.message}
     }
     load();
