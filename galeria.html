@@ -1,54 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galería | PHOTO FEST</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:#f5f5f2;color:#111;min-height:100vh}header{position:sticky;top:0;z-index:20;background:rgba(245,245,242,.94);backdrop-filter:blur(12px);border-bottom:1px solid #ddd;padding:18px 5%;display:flex;justify-content:space-between;align-items:center}.logo{font-weight:800;letter-spacing:3px}.logo span{font-weight:300}.back{color:#111;text-decoration:none;font-size:13px}.hero{padding:70px 5% 34px;max-width:1200px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:4px;font-size:11px;color:#777;margin-bottom:14px}.hero h1{font-size:clamp(42px,8vw,88px);line-height:.95;letter-spacing:-3px}.meta{margin-top:18px;color:#666;font-size:14px}.gallery{max-width:1200px;margin:auto;padding:0 5% 80px;columns:3 280px;column-gap:14px}.photo{break-inside:avoid;margin-bottom:14px;border-radius:18px;overflow:hidden;background:#ddd;display:block}.photo img{width:100%;display:block}.empty{max-width:1200px;margin:0 auto;padding:10px 5% 80px;color:#777;line-height:1.6}.status{display:inline-block;margin-top:18px;padding:8px 12px;border:1px solid #ccc;border-radius:999px;font-size:12px;color:#666}@media(max-width:700px){header{padding:16px 20px}.hero{padding:55px 20px 28px}.gallery{padding:0 10px 60px;columns:2 145px;column-gap:8px}.photo{margin-bottom:8px;border-radius:10px}.empty{padding:0 20px 60px}}
-  </style>
-</head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Galería | PHOTO FEST</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f2;color:#111;min-height:100vh}button,a{font:inherit}header{position:sticky;top:0;z-index:30;background:rgba(245,245,242,.92);backdrop-filter:blur(14px);border-bottom:1px solid #ddd;padding:17px 5%;display:flex;justify-content:space-between;align-items:center}.logo{font-weight:800;letter-spacing:3px}.logo span{font-weight:300}.header-actions{display:flex;gap:8px;align-items:center}.pill{border:1px solid #ccc;background:#fff;color:#111;border-radius:999px;padding:9px 13px;font-size:12px;cursor:pointer;text-decoration:none}.hero{padding:68px 5% 30px;max-width:1300px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:4px;font-size:11px;color:#777}.hero h1{font-size:clamp(42px,8vw,88px);line-height:.94;letter-spacing:-4px;margin:14px 0}.meta{color:#666;font-size:14px}.toolbar{max-width:1300px;margin:0 auto 20px;padding:0 5%;display:flex;justify-content:space-between;align-items:center;gap:12px}.status{font-size:12px;color:#777}.fav-filter.active{background:#111;color:#fff;border-color:#111}.gallery{max-width:1300px;margin:auto;padding:0 5% 100px;columns:3 280px;column-gap:12px}.photo{break-inside:avoid;margin-bottom:12px;border-radius:16px;overflow:hidden;background:#ddd;position:relative;cursor:zoom-in}.photo img{width:100%;display:block}.heart{position:absolute;right:10px;top:10px;width:38px;height:38px;border:0;border-radius:50%;background:rgba(255,255,255,.9);font-size:19px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.12)}.heart.on{background:#111;color:#fff}.empty{max-width:1300px;margin:auto;padding:10px 5% 80px;color:#777}.lightbox{position:fixed;inset:0;background:rgba(8,8,8,.96);z-index:100;display:none;align-items:center;justify-content:center;padding:70px 60px}.lightbox.show{display:flex}.lightbox img{max-width:100%;max-height:calc(100vh - 130px);object-fit:contain}.lb-top{position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;color:#fff}.lb-actions{display:flex;gap:8px}.darkbtn{border:1px solid #444;background:#181818;color:#fff;border-radius:999px;padding:10px 14px;cursor:pointer;text-decoration:none;font-size:12px}.close{font-size:24px;width:42px;height:42px;padding:0}.arrow{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border:1px solid #444;border-radius:50%;background:#181818;color:#fff;font-size:24px;cursor:pointer}.prev{left:18px}.next{right:18px}.counter{font-size:12px;color:#aaa}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#111;color:#fff;border-radius:999px;padding:11px 16px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:200}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:700px){header{padding:14px 16px}.header-actions .home{display:none}.hero{padding:48px 20px 24px}.hero h1{letter-spacing:-2px}.toolbar{padding:0 20px}.gallery{padding:0 8px 90px;columns:2 145px;column-gap:7px}.photo{margin-bottom:7px;border-radius:9px}.heart{width:34px;height:34px;right:7px;top:7px}.lightbox{padding:64px 8px 90px}.arrow{top:auto;bottom:20px}.prev{left:20px}.next{right:20px}.lb-top{top:12px;left:12px;right:12px}.lb-actions .darkbtn{padding:9px 11px}}
+</style></head>
 <body>
-  <header><div class="logo">PHOTO<span>FEST</span></div><a class="back" href="index.html">← Inicio</a></header>
-  <section class="hero"><div class="eyebrow">Galería del evento</div><h1 id="title">Cargando...</h1><div class="meta" id="meta"></div><div class="status" id="status">Conectando</div></section>
-  <main class="gallery" id="gallery"></main>
-  <div class="empty" id="empty" hidden></div>
-
-  <script src="config.js"></script>
-  <script>
-    const params=new URLSearchParams(location.search);
-    const slug=params.get('evento');
-    const base=(window.PHOTOFEST_SUPABASE_URL||'').replace(/\/$/,'');
-    const key=window.PHOTOFEST_SUPABASE_PUBLISHABLE_KEY||'';
-    const title=document.getElementById('title'),meta=document.getElementById('meta'),gallery=document.getElementById('gallery'),empty=document.getElementById('empty'),status=document.getElementById('status');
-
-    function niceDate(value){if(!value)return '';return new Date(value+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'}).toUpperCase()}
-    function publicPhotoUrl(path){return `${base}/storage/v1/object/public/photos/${path.split('/').map(encodeURIComponent).join('/')}`}
-    async function supabaseGet(path){
-      const r=await fetch(`${base}/rest/v1/${path}`,{headers:{apikey:key,Authorization:`Bearer ${key}`}});
-      if(!r.ok){throw new Error('No pudimos consultar Supabase.');}
-      return r.json();
-    }
-
-    async function load(){
-      if(!slug){title.textContent='Evento no especificado';status.textContent='Sin evento';return}
-      if(!base||!key){title.textContent='Galería sin conectar';status.textContent='Configuración pendiente';return}
-      try{
-        const events=await supabaseGet(`events?slug=eq.${encodeURIComponent(slug)}&status=eq.active&select=id,name,event_date,location&limit=1`);
-        if(!events.length)throw new Error('No se encontró este evento.');
-        const ev=events[0];
-        const photos=await supabaseGet(`photos?event_id=eq.${encodeURIComponent(ev.id)}&select=storage_path,file_name,created_at&order=created_at.asc`);
-        title.textContent=ev.name;
-        meta.textContent=[niceDate(ev.event_date),ev.location].filter(Boolean).join(' · ');
-        status.textContent=`${photos.length} fotografía${photos.length===1?'':'s'}`;
-        if(!photos.length){empty.hidden=false;empty.textContent='Todavía no hay fotografías publicadas para este evento.';return}
-        photos.forEach((p,i)=>{
-          const url=publicPhotoUrl(p.storage_path);
-          const a=document.createElement('a');a.className='photo';a.href=url;a.target='_blank';a.rel='noopener';a.innerHTML=`<img src="${url}" alt="Fotografía ${i+1}" loading="lazy">`;gallery.appendChild(a)
-        })
-      }catch(e){title.textContent='No pudimos abrir esta galería';status.textContent='Error';empty.hidden=false;empty.textContent=e.message}
-    }
-    load();
-  </script>
-</body>
-</html>
+<header><div class="logo">PHOTO<span>FEST</span></div><div class="header-actions"><button class="pill fav-filter" id="favFilter" onclick="toggleFavFilter()">♡ Favoritas <span id="favCount">0</span></button><a class="pill home" href="index.html">Inicio</a></div></header>
+<section class="hero"><div class="eyebrow">Tus recuerdos · disponibles ahora</div><h1 id="title">Cargando...</h1><div class="meta" id="meta"></div></section>
+<div class="toolbar"><div class="status" id="status">Conectando…</div><button class="pill" onclick="shareGallery()">Compartir galería</button></div>
+<main class="gallery" id="gallery"></main><div class="empty" id="empty" hidden></div>
+<div class="lightbox" id="lightbox" onclick="backdrop(event)"><div class="lb-top"><div class="counter" id="counter"></div><div class="lb-actions"><button class="darkbtn" id="lbFav" onclick="toggleCurrentFav()">♡ Favorita</button><a class="darkbtn" id="download" href="#" download>↓ Descargar</a><button class="darkbtn close" onclick="closeLightbox()">×</button></div></div><button class="arrow prev" onclick="move(-1)">‹</button><img id="bigPhoto" alt="Fotografía"><button class="arrow next" onclick="move(1)">›</button></div>
+<div class="toast" id="toast"></div>
+<script src="config.js"></script><script>
+const params=new URLSearchParams(location.search),slug=params.get('evento');
+const base=(window.PHOTOFEST_SUPABASE_URL||'').replace(/\/$/,''),key=window.PHOTOFEST_SUPABASE_PUBLISHABLE_KEY||window.PHOTOFEST_SUPABASE_KEY||'';
+const titleEl=document.getElementById('title'),metaEl=document.getElementById('meta'),galleryEl=document.getElementById('gallery'),emptyEl=document.getElementById('empty'),statusEl=document.getElementById('status');
+let photos=[],current=0,onlyFavs=false;const favKey='pf_favs_'+(slug||'gallery');let favs=new Set(JSON.parse(localStorage.getItem(favKey)||'[]'));
+function niceDate(v){if(!v)return'';return new Date(v+'T12:00:00').toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'}).toUpperCase()}
+function photoUrl(path){return`${base}/storage/v1/object/public/photos/${path.split('/').map(encodeURIComponent).join('/')}`}
+async function get(path){const r=await fetch(`${base}/rest/v1/${path}`,{headers:{apikey:key,Authorization:`Bearer ${key}`}});if(!r.ok)throw new Error('No pudimos consultar la galería.');return r.json()}
+function saveFavs(){localStorage.setItem(favKey,JSON.stringify([...favs]));document.getElementById('favCount').textContent=favs.size}
+function render(){galleryEl.innerHTML='';const shown=photos.map((p,i)=>({...p,_i:i})).filter(p=>!onlyFavs||favs.has(p.storage_path));emptyEl.hidden=shown.length>0;if(!shown.length){emptyEl.textContent=onlyFavs?'Todavía no has guardado fotografías favoritas.':'Todavía no hay fotografías publicadas para este evento.'}shown.forEach(p=>{const card=document.createElement('div');card.className='photo';const url=photoUrl(p.storage_path);card.innerHTML=`<img src="${url}" alt="Fotografía" loading="lazy"><button class="heart ${favs.has(p.storage_path)?'on':''}" aria-label="Favorita">${favs.has(p.storage_path)?'♥':'♡'}</button>`;card.querySelector('img').onclick=()=>openLightbox(p._i);card.querySelector('.heart').onclick=e=>{e.stopPropagation();toggleFav(p.storage_path)};galleryEl.appendChild(card)});saveFavs()}
+function toggleFav(path){favs.has(path)?favs.delete(path):favs.add(path);saveFavs();render();if(document.getElementById('lightbox').classList.contains('show'))syncLightbox()}
+function toggleFavFilter(){onlyFavs=!onlyFavs;document.getElementById('favFilter').classList.toggle('active',onlyFavs);render()}
+function openLightbox(i){current=i;document.getElementById('lightbox').classList.add('show');document.body.style.overflow='hidden';syncLightbox()}
+function syncLightbox(){const p=photos[current];if(!p)return;const url=photoUrl(p.storage_path);document.getElementById('bigPhoto').src=url;const dl=document.getElementById('download');dl.href=url;dl.setAttribute('download',p.file_name||'photofest.jpg');document.getElementById('counter').textContent=`${current+1} / ${photos.length}`;document.getElementById('lbFav').textContent=favs.has(p.storage_path)?'♥ Favorita':'♡ Favorita'}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('show');document.body.style.overflow=''}function backdrop(e){if(e.target.id==='lightbox')closeLightbox()}function move(n){if(!photos.length)return;current=(current+n+photos.length)%photos.length;syncLightbox()}function toggleCurrentFav(){toggleFav(photos[current].storage_path)}
+function toastMsg(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+async function shareGallery(){try{if(navigator.share){await navigator.share({title:titleEl.textContent,url:location.href})}else{await navigator.clipboard.writeText(location.href);toastMsg('Enlace copiado')}}catch(e){}}
+document.addEventListener('keydown',e=>{if(!document.getElementById('lightbox').classList.contains('show'))return;if(e.key==='Escape')closeLightbox();if(e.key==='ArrowRight')move(1);if(e.key==='ArrowLeft')move(-1)});
+async function load(){if(!slug){titleEl.textContent='Evento no especificado';statusEl.textContent='Sin evento';return}if(!base||!key){titleEl.textContent='Galería sin conectar';return}try{const events=await get(`events?slug=eq.${encodeURIComponent(slug)}&status=eq.active&select=id,name,event_date,location&limit=1`);if(!events.length)throw new Error('Esta galería no está disponible.');const ev=events[0];photos=await get(`photos?event_id=eq.${encodeURIComponent(ev.id)}&select=storage_path,file_name,created_at&order=created_at.asc`);titleEl.textContent=ev.name;metaEl.textContent=[niceDate(ev.event_date),ev.location].filter(Boolean).join(' · ');statusEl.textContent=`${photos.length} fotografía${photos.length===1?'':'s'} disponibles`;render()}catch(e){titleEl.textContent='Galería no disponible';statusEl.textContent='';emptyEl.hidden=false;emptyEl.textContent=e.message}}
+saveFavs();load();
+</script></body></html>
